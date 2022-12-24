@@ -1,3 +1,13 @@
+// global variables
+let is_mouse_down = false;
+
+window.onmousedown = () => {
+    is_mouse_down = true;
+}
+window.onmouseup = () => {
+    is_mouse_down = false;
+}
+
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
 
@@ -20,7 +30,7 @@ const grid_squares = grid_container.querySelectorAll('div.square');
 grid_squares.forEach((square) => {
 
     // add an event listener to every square in the grid
-    square.addEventListener(('mousedown'), () => {
+    square.addEventListener(('mousemove'), () => {
 
         // give the clicked square the clicked css class
         square.classList.add('clicked');
