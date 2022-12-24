@@ -1,12 +1,5 @@
 // global variables
-let is_mouse_down = false;
-
-window.onmousedown = () => {
-    is_mouse_down = true;
-}
-window.onmouseup = () => {
-    is_mouse_down = false;
-}
+let is_mouse_down = false;      // store the status if the mouse is clicked or not
 
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
@@ -26,13 +19,42 @@ for(let square_id = 0; square_id < 256; square_id ++) {
 // must be declared AFTER the for loop
 const grid_squares = grid_container.querySelectorAll('div.square');
 
+// is the mouse clicked / down in the window?
+window.onmousedown = () => {
+
+    // set the global mouse down variable true
+    is_mouse_down = true;
+
+}
+
+// is the mouse not clicked / up in the window?
+window.onmouseup = () => {
+
+    // set the global mouse down variable false
+    is_mouse_down = false;
+
+}
+
 // select all squares in the square grid
 grid_squares.forEach((square) => {
 
-    // add an event listener to every square in the grid
+    // add an mousemove event listener to every square in the grid
     square.addEventListener(('mousemove'), () => {
 
-        // give the clicked square the clicked css class
+        // only change the color of the square if the square is square is also clicked, not only by mouse movement
+        if(is_mouse_down) {
+
+            // give the clicked square the clicked css class
+            square.classList.add('clicked');
+
+        }
+
+    });
+
+    // add an mouseclick event listener to every square in the grid
+    // so we don't have to move the mouse to change a single square
+    square.addEventListener(('mousedown'), () => {
+
         square.classList.add('clicked');
 
     });
