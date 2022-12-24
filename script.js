@@ -55,6 +55,7 @@ grid_squares.forEach((square) => {
     // so we don't have to move the mouse to change a single square
     square.addEventListener(('mousedown'), () => {
 
+        // give the clicked square the clicked css class
         square.classList.add('clicked');
 
     });
