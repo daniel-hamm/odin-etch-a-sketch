@@ -1,9 +1,6 @@
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
 
-// select all squares as group
-const grid_squares = document.querySelectorAll('.square');
-
 // generate the square grid
 // we generate a 16x16 square with 16*16px of each square
 // as we use css flexbox wrap there only fit 16 squares in one row, because the width is respected
@@ -15,3 +12,19 @@ for(let square_id = 0; square_id < 256; square_id ++) {
     grid_container.appendChild(square);                   // append the squares to the main grid
 }
 
+// select all squares as group 
+// must be declared AFTER the for loop
+const grid_squares = grid_container.querySelectorAll('div.square');
+
+// select all squares in the square grid
+grid_squares.forEach((square) => {
+
+    // add an event listener to every square in the grid
+    square.addEventListener(('mousedown'), () => {
+
+        // give the clicked square the clicked css class
+        square.classList.add('clicked');
+
+    });
+
+});

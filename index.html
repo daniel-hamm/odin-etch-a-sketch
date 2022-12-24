@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
         <script type="text/javascript" src="script.js" defer></script>
     </head>
-    <body>
+
+    <!-- prevent the squares from being dragged and dropped with a mouse click -->
+    <body ondragstart="return false;" ondrop="return false;"> 
 
         <div class="main">
             <div class="grid-outline">
@@ -14,4 +18,5 @@
         </div>
 
     </body>
+
 </html>
