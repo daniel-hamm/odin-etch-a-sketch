@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.grid-outline {
+    flex-shrink: 0;
+    width: calc(256px + 32px);    /* inner width => 16*16 = 256; plus border 1px each side => 2px * 16 = 32px */
+    height: calc(256px + 32px);
+    border: 1px solid black;
+}
