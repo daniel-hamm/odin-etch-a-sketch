@@ -11,8 +11,6 @@ body {
 
 .grid-outline {
     flex-shrink: 0;                 /* respect width and height */
-    width: calc(256px + 32px);      /* inner width => 16*16 = 256; plus grid border 1px each side => 2px * 16 = 32px */
-    height: calc(256px + 32px);     /* inner height => 16*16 = 256; plus grid border 1px each side => 2px * 16 = 32px */
     border: 1px solid black;
     display: flex;                  /* display the inner grid as a flexbox */
     flex-flow: row wrap;            /* use the wrap function, so we don't have to create every grid row separately */
@@ -24,8 +22,6 @@ body {
 
 .square {
     flex-shrink: 0;                 /* respect the grids width and height */
-    width: 16px;                    
-    height: 16px;
     border: 1px solid black;
     padding: 0;
     margin: 0;
