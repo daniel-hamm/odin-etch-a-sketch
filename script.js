@@ -1,8 +1,8 @@
 // global variables
 let is_mouse_down = false;      // store the status if the mouse is clicked or not
 let square_size = 32;           // square size in px; 16, 32, 64
-let grid_max_width = 256;       // max width of the grid
-let grid_max_height = 256;      // max height of the grid
+let grid_max_width = 512;       // max width of the grid
+let grid_max_height = 512;      // max height of the grid
 
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
