@@ -7,12 +7,14 @@ let grid_max_height = 256;      // max height of the grid
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
 
-// ###### 2 is the border size and should be a variable ###### maybe no or way smaller border?
-// ###### adjust the border size depending on the number of squares ######
-// width and height dynamically styling of the grid container
+
 // 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
 // 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
 // 64 * 2 (borders) = 128; 32px / 128 = 0,25 px borders
+
+// ##### ACHTUNG: Border kann nicht kleiner 0,5 px sein !!! -> ggf. durch Farbe anpassen bzw. neue Grid Skalierung
+// ##### von 256 auf 512? Dann kann ich mit größeren Bordern arbeiten.
+
 grid_container.style.width = `${grid_max_width + 32}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
 grid_container.style.height = `${grid_max_height + 32}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
 
