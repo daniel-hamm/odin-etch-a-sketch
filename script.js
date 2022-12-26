@@ -1,6 +1,6 @@
 // global variables
 let is_mouse_down = false;      // store the status if the mouse is clicked or not
-let square_size = 16;           // square size in px; 16, 32, 64
+let square_size = 32;           // square size in px; 16, 32, 64
 let grid_max_width = 256;       // max width of the grid
 let grid_max_height = 256;      // max height of the grid
 
@@ -10,8 +10,11 @@ const grid_container = document.querySelector('.grid-outline');
 // ###### 2 is the border size and should be a variable ###### maybe no or way smaller border?
 // ###### adjust the border size depending on the number of squares ######
 // width and height dynamically styling of the grid container
-grid_container.style.width = `${grid_max_width + 2 * square_size}px`;   /* inner width => 16*16 = 256; plus grid border 1px each side => 2px * 16 = 32px */
-grid_container.style.height = `${grid_max_height + 2 * square_size}px`; /* inner height => 16*16 = 256; plus grid border 1px each side => 2px * 16 = 32px */
+// 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
+// 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
+// 64 * 2 (borders) = 128; 32px / 128 = 0,25 px borders
+grid_container.style.width = `${grid_max_width + 32}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
+grid_container.style.height = `${grid_max_height + 32}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
 
 // generate the square grid
 // we generate a 16x16 square with 16*16px of each square
@@ -21,8 +24,9 @@ for(let square_id = 0; square_id < (square_size * square_size); square_id ++) {
     const square = document.createElement('div');                   // set the square as div
     square.classList.add('square');                                 // add the same class to each square, so we can use them as group
     square.setAttribute('id', `square-${square_id}`);               // give each square a unique id
-    square.style.width = `${grid_max_width / square_size}px`;       // 256px is the grid width without borders and should stay the same
-    square.style.height = `${grid_max_height / square_size}px`;     // so adjust the square width and height depending on the max grid values
+    console.log(square.style.width = `${grid_max_width / square_size}px`);       // 256px is the grid width without borders and should stay the same
+    console.log(square.style.height = `${grid_max_height / square_size}px`);     // so adjust the square width and height depending on the max grid values
+    console.log(square.style.border = `${32 / (square_size * 2)}px solid black`);
     grid_container.appendChild(square);                             // append the squares to the main grid
 }
 
