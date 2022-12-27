@@ -3,6 +3,8 @@ let is_mouse_down = false;      // store the status if the mouse is clicked or n
 let square_size = 32;           // square size in px; 16, 32, 64
 let grid_max_width = 512;       // max width of the grid
 let grid_max_height = 512;      // max height of the grid
+let additional_grid_with = 32   // set the additional grid width
+let square_border_size = 1;     // set the squares border size default to 1 px
 
 // select the grid outline
 const grid_container = document.querySelector('.grid-outline');
@@ -12,11 +14,27 @@ const grid_container = document.querySelector('.grid-outline');
 // 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
 // 64 * 2 (borders) = 128; 32px / 128 = 0,25 px borders
 
-// ##### ACHTUNG: Border kann nicht kleiner 0,5 px sein !!! -> ggf. durch Farbe anpassen bzw. neue Grid Skalierung
-// ##### von 256 auf 512? Dann kann ich mit größeren Bordern arbeiten.
+// we want the grid to be 256 + 32 px
+// we adjust the border of the squares, so it fits this rule
+// this is NOT possible with a 64x64 grid, as the border would be 0,25 px thick
+// 0,25 px is too small for a border
+// so we have to adjust the additional grid size from 32 to 64 when the user wants to use 64x64
+if(square_size >= 64)
+    additional_grid_with = 64;
+else
+    32;
 
-grid_container.style.width = `${grid_max_width + 32}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
-grid_container.style.height = `${grid_max_height + 32}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
+// we also catch borders smaller 0.5 px to prevent errors
+// so we have a 0.5 px border at the 64x64 grid
+square_border_size = 32 / (square_size * 2);
+
+if(square_border_size <= 0.5) {
+    square_border_size = 0.5;
+}
+
+grid_container.style.width = `${grid_max_width + additional_grid_with}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
+grid_container.style.height = `${grid_max_height + additional_grid_with}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
+
 
 // generate the square grid
 // we generate a 16x16 square with 16*16px of each square
@@ -28,7 +46,7 @@ for(let square_id = 0; square_id < (square_size * square_size); square_id ++) {
     square.setAttribute('id', `square-${square_id}`);               // give each square a unique id
     console.log(square.style.width = `${grid_max_width / square_size}px`);       // 256px is the grid width without borders and should stay the same
     console.log(square.style.height = `${grid_max_height / square_size}px`);     // so adjust the square width and height depending on the max grid values
-    console.log(square.style.border = `${32 / (square_size * 2)}px solid black`);
+    console.log(square.style.border = `${square_border_size}px solid black`);
     grid_container.appendChild(square);                             // append the squares to the main grid
 }
 
