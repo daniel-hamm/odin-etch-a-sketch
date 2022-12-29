@@ -13,8 +13,15 @@ const grid_buttons = document.querySelector('.grid-buttons');
 // adjust the outer width of the buttons flexbox according to the grid size
 grid_buttons.style.width = `${grid_max_width}px`;
 
-// add an event listener to every button
+// add a query selector for the grid size buttons
 const grid_buttons_single = document.querySelectorAll('.grid-buttons button');
+
+// add an event listener to every grid size button
+grid_buttons_single.forEach((button) => {
+    button.addEventListener(('click'), () => {
+        console.log(button.id);
+    });
+});
 
 // 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
 // 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
