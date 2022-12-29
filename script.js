@@ -11,7 +11,7 @@ const grid_container = document.querySelector('.grid-outline');
 const grid_buttons = document.querySelector('.grid-buttons');
 
 // adjust the outer width of the buttons flexbox according to the grid size
-grid_buttons.style.width = `${grid_max_width}px`;
+grid_buttons.style.width = `${grid_max_width + additional_grid_with}px`;
 
 // add a query selector for the grid size buttons
 const grid_buttons_single = document.querySelectorAll('.grid-buttons button');
@@ -32,7 +32,20 @@ function removeSquares() {
 
 }
 
-// add an event listener to every grid sizing button
+// function to reset all squares at once to the default class
+function reset() {
+
+    // query all squares at once
+    const grid_squares = document.querySelectorAll('.grid .grid-outline .square');
+
+    // remove all square div's in a loop
+    grid_squares.forEach((square) => {
+        square.classList.remove('clicked');
+    });
+
+}
+
+// add an event listener to every grid sizing button and the reset button
 grid_buttons_single.forEach((button) => {
     button.addEventListener(('click'), () => {
 
@@ -54,6 +67,9 @@ grid_buttons_single.forEach((button) => {
                 removeSquares();        
                 build_grid();           
                 break;
+            case "reset":               // catch the reset button
+                reset();                // call the reset function
+                break;
         }
     });
 });
@@ -64,17 +80,14 @@ function build_grid() {
     // 16 * 2 (borders) = 32;   64px / 32 = 2 px borders
     // 32 * 2 (borders) = 64;   64px / 64 = 1 px borders
     // 64 * 2 (borders) = 128;  64px / 128 = 0,5 px borders
-
     square_border_size = additional_grid_with / (square_size * 2);
 
     // set the grid container width
     // inner width => 16*16 = 256; plus 64px max for borders
-
     grid_container.style.width = `${grid_max_width + additional_grid_with}px`;   
     
     // set the grid container height
     // inner height => 16*16 = 256; plus 64px max for borders
-
     grid_container.style.height = `${grid_max_height + additional_grid_with}px`; 
 
     // set the grid containers border size the same as the squares border size
