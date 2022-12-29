@@ -17,6 +17,17 @@ const grid_buttons_single = document.querySelectorAll('.grid-buttons button');
 
 build_grid();
 
+// function to remove all square on rebuild of the grid
+function removeSquares() {
+
+    const grid_squares = document.querySelectorAll('.grid .grid-outline .square');
+
+    grid_squares.forEach((square) => {
+        square.remove();
+    });
+
+}
+
 // add an event listener to every grid size button
 grid_buttons_single.forEach((button) => {
     button.addEventListener(('click'), () => {
@@ -26,26 +37,27 @@ grid_buttons_single.forEach((button) => {
         switch(button.id) {
             case "grid-button-16":
                 square_size = 16;
+                // remove all squares as we might generate new ones with a different size
+                removeSquares();
                 build_grid();
                 break;
             case "grid-button-32":
                 square_size = 32;
+                removeSquares();
                 build_grid();
                 break;
             case "grid-button-64":
                 square_size = 64;
+                removeSquares();
                 build_grid();
                 break;
         }
-
-        console.log(square_size);
-
     });
 });
 
 function build_grid() {
 
-    
+    const grid_container = document.querySelector('.grid-outline');
     
     // 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
     // 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
@@ -68,8 +80,6 @@ function build_grid() {
     if(square_border_size <= 0.5) {
         square_border_size = 0.5;
     }
-
-    const grid_container = document.querySelector('.grid-outline');
 
     grid_container.style.width = `${grid_max_width + additional_grid_with}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
     grid_container.style.height = `${grid_max_height + additional_grid_with}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
