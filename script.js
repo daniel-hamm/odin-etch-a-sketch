@@ -57,6 +57,9 @@ grid_buttons_single.forEach((button) => {
 
 function build_grid() {
 
+    // ### NEXT: generate the grid_container here and NOT in the html
+    // ### NEXT: so we can adjust the grid size depending on the squares
+
     const grid_container = document.querySelector('.grid-outline');
     
     // 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
