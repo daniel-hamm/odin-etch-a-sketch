@@ -3,7 +3,8 @@ body {
     padding: 0;
 }
 
-.main {
+/* flexbox to display the square grid */
+.grid {
     display: flex;
     justify-content: center;        /* center the grid-outline inside a flexbox on the page */
     margin-top: 50px;           
@@ -18,6 +19,24 @@ body {
                                     /* grid square 17 does not fit in the row, so it will be placed in the second row */
     padding: 0;
     margin: 0;
+}
+
+.grid-buttons-outer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* flexbox to display the grid size buttons */
+.grid-buttons {
+    display: flex;
+    justify-content: center;        /* center the grid-outline inside a flexbox on the page */
+    gap: 16px;
+    width: 512px;
+}
+
+.grid-buttons button {
+    flex: 1;
 }
 
 .square {

@@ -6,9 +6,15 @@ let grid_max_height = 512;      // max height of the grid
 let additional_grid_with = 32   // set the additional grid width
 let square_border_size = 1;     // set the squares border size default to 1 px
 
-// select the grid outline
+// select the html querys
 const grid_container = document.querySelector('.grid-outline');
+const grid_buttons = document.querySelector('.grid-buttons');
 
+// adjust the outer width of the buttons flexbox according to the grid size
+grid_buttons.style.width = `${grid_max_width}px`;
+
+// add an event listener to every button
+const grid_buttons_single = document.querySelectorAll('.grid-buttons button');
 
 // 16 * 2 (borders) = 32; 32px / 32 = 1 px borders
 // 32 * 2 (borders) = 64; 32px / 64 = 0,5 px borders
@@ -44,9 +50,9 @@ for(let square_id = 0; square_id < (square_size * square_size); square_id ++) {
     const square = document.createElement('div');                   // set the square as div
     square.classList.add('square');                                 // add the same class to each square, so we can use them as group
     square.setAttribute('id', `square-${square_id}`);               // give each square a unique id
-    console.log(square.style.width = `${grid_max_width / square_size}px`);       // 256px is the grid width without borders and should stay the same
-    console.log(square.style.height = `${grid_max_height / square_size}px`);     // so adjust the square width and height depending on the max grid values
-    console.log(square.style.border = `${square_border_size}px solid black`);
+    square.style.width = `${grid_max_width / square_size}px`;       // 256px is the grid width without borders and should stay the same
+    square.style.height = `${grid_max_height / square_size}px`;     // so adjust the square width and height depending on the max grid values
+    square.style.border = `${square_border_size}px solid black`;
     grid_container.appendChild(square);                             // append the squares to the main grid
 }
 
