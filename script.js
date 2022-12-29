@@ -16,41 +16,43 @@ grid_buttons.style.width = `${grid_max_width}px`;
 // add a query selector for the grid size buttons
 const grid_buttons_single = document.querySelectorAll('.grid-buttons button');
 
+// build the first grid with default values
 build_grid();
 
 // function to remove all square on rebuild of the grid
 function removeSquares() {
 
+    // query all squares at once
     const grid_squares = document.querySelectorAll('.grid .grid-outline .square');
 
+    // remove all square div's in a loop
     grid_squares.forEach((square) => {
         square.remove();
     });
 
 }
 
-// add an event listener to every grid size button
+// add an event listener to every grid sizing button
 grid_buttons_single.forEach((button) => {
     button.addEventListener(('click'), () => {
 
         // depending on the clicked buttons id change the square size
         // and call the function to function to rebuild the grid
         switch(button.id) {
-            case "grid-button-16":
-                square_size = 16;
-                // remove all squares as we might generate new ones with a different size
-                removeSquares();
-                build_grid();
+            case "grid-button-16":      // the 16x16 button was pressed
+                square_size = 16;       // set the global square size to 16x16
+                removeSquares();        // remove all squares before generating new ones
+                build_grid();           // rebuild the grid with the new size
                 break;
-            case "grid-button-32":
-                square_size = 32;
-                removeSquares();
-                build_grid();
+            case "grid-button-32":      // same as above
+                square_size = 32;       
+                removeSquares();        
+                build_grid();           
                 break;
-            case "grid-button-64":
-                square_size = 64;
-                removeSquares();
-                build_grid();
+            case "grid-button-64":      // same as above
+                square_size = 64;       
+                removeSquares();        
+                build_grid();           
                 break;
         }
     });
@@ -65,8 +67,18 @@ function build_grid() {
 
     square_border_size = additional_grid_with / (square_size * 2);
 
-    grid_container.style.width = `${grid_max_width + additional_grid_with}px`;   /* inner width => 16*16 = 256; plus 32px max for borders */
-    grid_container.style.height = `${grid_max_height + additional_grid_with}px`; /* inner height => 16*16 = 256; plus 32px max for borders */
+    // set the grid container width
+    // inner width => 16*16 = 256; plus 64px max for borders
+
+    grid_container.style.width = `${grid_max_width + additional_grid_with}px`;   
+    
+    // set the grid container height
+    // inner height => 16*16 = 256; plus 64px max for borders
+
+    grid_container.style.height = `${grid_max_height + additional_grid_with}px`; 
+
+    // set the grid containers border size the same as the squares border size
+    grid_container.style.border = `${square_border_size}px solid black`;
 
 
     // generate the square grid
@@ -79,7 +91,7 @@ function build_grid() {
         square.setAttribute('id', `square-${square_id}`);               // give each square a unique id
         square.style.width = `${grid_max_width / square_size}px`;       // 256px is the grid width without borders and should stay the same
         square.style.height = `${grid_max_height / square_size}px`;     // so adjust the square width and height depending on the max grid values
-        square.style.border = `${square_border_size}px solid black`;
+        square.style.border = `${square_border_size}px solid black`;    // set the squares border size depending on the calculation
         grid_container.appendChild(square);                             // append the squares to the main grid
     }
 
